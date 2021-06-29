@@ -11,4 +11,11 @@ class Entreprise extends Model
 
     protected $table = 'entreprise';
 
+    const PAGINATION_COUNT = 10;
+
+    public function contact()
+    {
+        return $this->hasOne(Contact::class);
+    }
+
 }

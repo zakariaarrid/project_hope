@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Contact;
+use App\Models\Entreprise;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return Contact::all();
+Route::get('/', function () {  
+    return view('welcome');
 });
