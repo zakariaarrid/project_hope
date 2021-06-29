@@ -12,11 +12,16 @@ class TableContact extends Component
 
     public $displayModal = false;
 
-    public function editContact($id) 
+    public function editContact($entreprise, $typeSelection) 
     {
         $this->displayModal = true;
 
-        $this->emit('EditContact', $this->displayModal);
+        $this->emit('EditContact', $this->displayModal, $entreprise, $typeSelection);
+    }
+
+    public function viewContact($entreprise)
+    {
+        $this->emit('viewContact', $entreprise);
     }
 
     public function render()

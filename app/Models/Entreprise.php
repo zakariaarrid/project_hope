@@ -9,6 +9,8 @@ class Entreprise extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];  
+
     protected $table = 'entreprise';
 
     const PAGINATION_COUNT = 10;

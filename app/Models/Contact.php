@@ -10,6 +10,8 @@ class Contact extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];  
+
     protected $table = 'contact';
 
     public function entreprise()

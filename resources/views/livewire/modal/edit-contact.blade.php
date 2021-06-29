@@ -1,13 +1,14 @@
-<div class="flex justify-center h-screen items-center bg-gray-200 bg-opacity-75 antialiased fixed z-10 inset-0 overflow-y-auto"
-    x-cloak
-    x-data="{ isOpen: @entangle('display') } "
+<div class="flex justify-center h-screen items-center  bg-opacity-75 antialiased fixed z-10 inset-0 overflow-y-auto"
+    x-cloak   
+    x-data="{ isOpen: @entangle('display') } "    
     x-show="isOpen"
+    @keydown.escape.window="console.log('test')"
 >
     <div class="flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg border border-gray-300 shadow-xl ">
       <div
         class="flex flex-row justify-between p-6 bg-white border-b border-gray-200 rounded-tl-lg rounded-tr-lg"
       >
-        <p class="font-semibold text-gray-800">Add a step</p>
+        <p class="font-semibold text-gray-800">Détail du contact</p>
         <svg
           class="w-6 h-6"
           fill="none"
@@ -24,85 +25,88 @@
         </svg>
       </div>
       <div class="flex flex-col px-6 py-5 bg-gray-50">
-        <p class="mb-2 font-semibold text-gray-700">Bots Message</p>
-        <textarea
-          type="text"
-          name=""
-          placeholder="Type message..."
-          class="p-5 mb-5 bg-white border border-gray-200 rounded shadow-sm h-36"
-          id=""
-        ></textarea>
-        <div class="flex flex-col sm:flex-row items-center mb-5 sm:space-x-5">
-          <div class="w-full sm:w-1/2">
-            <p class="mb-2 font-semibold text-gray-700">Customer Response</p>
-            <select
-              type="text"
-              name=""
-              class="w-full p-5 bg-white border border-gray-200 rounded shadow-sm appearance-none"
-              id=""
-            >
-              <option value="0">Add service</option>
-            </select>
-          </div>
-          <div class="w-full sm:w-1/2 mt-2 sm:mt-0">
-            <p class="mb-2 font-semibold text-gray-700">Next step</p>
-            <select
-              type="text"
-              name=""
-              class="w-full p-5 bg-white border border-gray-200 rounded shadow-sm appearance-none"
-              id=""
-            >
-              <option value="0">Book Appointment</option>
-            </select>
-          </div>
-        </div>
-        <hr />
-
-        <div class="flex items-center mt-5 mb-3 space-x-4">
-          <input
-            class="inline-flex rounded-full"
-            type="checkbox"
-            id="check1"
-            name="check1"
-          />
-          <label class="inline-flex font-semibold text-gray-400" for="check1">
-            Add a crew</label
-          ><br />
-          <input
-            class="inline-flex"
-            type="checkbox"
-            id="check2"
-            name="check2"
-                 checked
-          />
-          <label class="inline-flex font-semibold text-blue-500" for="check2">
-            Add a specific agent</label
-          ><br />
-        </div>
-        <div
-          class="flex flex-row items-center justify-between p-5 bg-white border border-gray-200 rounded shadow-sm"
-        >
-          <div class="flex flex-row items-center">
-            <img
-              class="w-10 h-10 mr-3 rounded-full"
-              src="https://randomuser.me/api/portraits/lego/7.jpg"
-              alt=""
-            />
-            <div class="flex flex-col">
-              <p class="font-semibold text-gray-800">Xu Lin Bashir</p>
-              <p class="text-gray-400">table.co</p>
+        <form class="w-full max-w-lg" wire:submit.prevent="updateContact">
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block uppercase tracking-wide  text-xs font-bold mb-2" for="grid-first-name">
+                    Prénom
+                  </label>
+                  <input wire:model.defer="prenom" class="appearance-none block w-full   border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Prénom" @if($typeSelection == 'show') disabled @endif>              
+                </div>
+                <div class="w-full md:w-1/2 px-3">
+                  <label class="block uppercase tracking-wide  text-xs font-bold mb-2" >
+                    Nom
+                  </label>
+                  <input wire:model.defer="nom" class="appearance-none block w-full   border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Nom" @if($typeSelection == 'show') disabled @endif>
+                </div>
+              </div>
+              <div class="flex flex-wrap -mx-3 mb-6">           
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide  text-xs font-bold mb-2" >
+                    Email
+                  </label>
+                  <input wire:model.defer="email" class="appearance-none block w-full   border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="email" placeholder="Email" @if($typeSelection == 'show') disabled @endif>
+                </div>
+              </div>
+              <div class="flex flex-wrap -mx-3 mb-6">           
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide  text-xs font-bold mb-2" >
+                    Entreprise
+                  </label>
+                  <input wire:model.defer='nomEntreprise' class="appearance-none block w-full   border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Entreprise" @if($typeSelection == 'show') disabled @endif>
+                </div>
+              </div>
+              <div class="flex flex-wrap -mx-3 mb-6">           
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide  text-xs font-bold mb-2" >
+                    Adresse
+                  </label>
+                  <textarea wire:model.wire="adresse" class="resize-y w-full border rounded-md" @if($typeSelection == 'show') disabled @endif></textarea>              
+                </div>
+              </div>
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block uppercase tracking-wide  text-xs font-bold mb-2" for="grid-first-name">
+                    Code Postal
+                  </label>
+                  <input wire:model.defer="code_postal" class="appearance-none block w-full   border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="Code Postal" @if($typeSelection == 'show') disabled @endif>              
+                </div>
+                <div class="w-full md:w-1/2 px-3">
+                  <label class="block uppercase tracking-wide  text-xs font-bold mb-2" >
+                    Ville
+                  </label>
+                  <input wire:model.defer="ville" class="appearance-none block w-full   border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="text" placeholder="Ville" @if($typeSelection == 'show') disabled @endif>
+                </div>
+              </div>
+              <div class="flex flex-wrap -mx-3 mb-2">            
+                <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                  <label class="block uppercase tracking-wide  text-xs font-bold mb-2" for="grid-state">
+                    State
+                  </label>
+                  <div class="relative">
+                    <select wire:model.defer="statut" class="block appearance-none w-full  border border-gray-200  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  id="grid-state" @if($typeSelection == 'show') disabled @endif>
+                      <option value="lead">lead</option>
+                      <option value="client">client</option>
+                      <option value="prospect">prospect</option>
+                      
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 ">
+                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                  </div>
+                </div>           
+              </div>
+                  
             </div>
+            <div
+              class="flex flex-row items-center justify-between p-5 bg-white border-t border-gray-200 rounded-bl-lg rounded-br-lg"
+            >
+            <p class="font-semibold text-gray-600">Annuler</p>
+            <button type="submit" class="px-4 py-2 text-white font-semibold bg-blue-500 rounded">
+              Valider
+            </button>      
+              
           </div>
-          <h1 class="font-semibold text-red-400">Remove</h1>
-        </div>
-      </div>
-      <div
-        class="flex flex-row items-center justify-between p-5 bg-white border-t border-gray-200 rounded-bl-lg rounded-br-lg"
-      >
-        <p class="font-semibold text-gray-600">Cancel</p>
-        <button class="px-4 py-2 text-white font-semibold bg-blue-500 rounded">
-          Save
-        </button>
-      </div>
+        </form>
     </div>
   </div>
