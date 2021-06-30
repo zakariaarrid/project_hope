@@ -43,14 +43,14 @@ class EditContact extends Component
     ];
 
     public function EditContact($display, $entreprise, $typeSelection)
-    {
+    { 
         $this->id_enteprise = $entreprise['id'];
 
-        $this->nom = $entreprise['contact']['nom']; 
+        $this->nom = $entreprise['contactnom']; 
 
-        $this->prenom = $entreprise['contact']['prenom'];  
+        $this->prenom = $entreprise['prenom'];  
         
-        $this->email = $entreprise['contact']['e_mail'];  
+        $this->email = $entreprise['e_mail'];  
 
         $this->nomEntreprise = $entreprise['nom']; 
 
@@ -70,11 +70,13 @@ class EditContact extends Component
     public function updateContact()
     {
         if($this->typeSelection == 'edit'){
-            //update entreprise
+            //update entreprise           
 
-            $entreprise = Entreprise::findOrFail($this->id_enteprise);
+            $entreprise = Entreprise::findOrFail($this->id_enteprise);           
 
             $entreprise['adresse'] =  $this->adresse;
+
+            $entreprise['nom'] =  $this->nomEntreprise;
 
             $entreprise['code_postal'] =  $this->code_postal;
 

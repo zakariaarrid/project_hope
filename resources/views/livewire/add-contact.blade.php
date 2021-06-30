@@ -15,18 +15,18 @@
           stroke="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
-          wire:click="fermerPop"         
+          wire:click="fermerPop"          
         >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
+            d="M6 18L18 6M6 6l12 12"           
           ></path>
         </svg>
       </div>
       <div class="flex flex-col px-6 py-5 bg-gray-50">
-        <form class="w-full max-w-lg" wire:submit.prevent="updateContact">
+        <form class="w-full max-w-lg" wire:submit.prevent="createContact">
               <div class="flex flex-wrap -mx-3 mb-1.5">
                 <div class="w-full md:w-1/2 px-3 mb-1.5 md:mb-0">
                   <label class="block uppercase tracking-wide  text-xs font-bold " for="grid-first-name">
@@ -46,7 +46,7 @@
                   <label class="block uppercase tracking-wide  text-xs font-bold " >
                     Email
                   </label>
-                  <input wire:model.defer="email" class="appearance-none block w-full   border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="email" placeholder="Email" @if($typeSelection == 'show') disabled @endif>
+                  <input wire:model.defer="e_mail" class="appearance-none block w-full   border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="email" placeholder="Email" @if($typeSelection == 'show') disabled @endif>
                 </div>
               </div>
               <div class="flex flex-wrap -mx-3 mb-1.5">           
@@ -104,9 +104,8 @@
             >
             <p class="font-semibold text-gray-600 cursor-pointer" wire:click="fermerPop">Annuler</p>
             <button type="submit" class="px-4 py-2 text-white font-semibold bg-blue-500 rounded">
-              Valider
-            </button>      
-              
+              Enregistrer
+            </button>                    
           </div>
         </form>
     </div>
