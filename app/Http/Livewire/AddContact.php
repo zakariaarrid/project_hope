@@ -39,6 +39,7 @@ class AddContact extends Component
         'nom' => 'required|string',
         'prenom' => 'required|string',
         'e_mail' => 'required|email',
+        'adresse' => 'required',
         'nomEntreprise' => 'required|alpha_num',
         'code_postal' => 'required|integer',
     ];
@@ -64,6 +65,7 @@ class AddContact extends Component
            
         }elseif($entreprise === null && $contact === null)
         {
+          
           $this->__saveContact();  
 
           $this->display = false;         
@@ -93,6 +95,8 @@ class AddContact extends Component
 
     public function __saveContact() 
     {
+        $this->validate();
+
         $entreprise = new Entreprise();
 
         $entreprise['adresse'] =  $this->adresse;

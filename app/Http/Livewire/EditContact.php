@@ -37,7 +37,7 @@ class EditContact extends Component
     protected $rules = [
         'nom' => 'required|string',
         'prenom' => 'required|string',
-        'e_mail' => 'required|email',
+        'email' => 'required|email',
         'nomEntreprise' => 'required|alpha_num',
         'code_postal' => 'required|integer',
     ];
@@ -70,7 +70,9 @@ class EditContact extends Component
     public function updateContact()
     {
         if($this->typeSelection == 'edit'){
-            //update entreprise           
+            //update entreprise         
+            
+            $this->validate();            
 
             $entreprise = Entreprise::findOrFail($this->id_enteprise);           
 
@@ -95,6 +97,8 @@ class EditContact extends Component
             $contact['nom'] = $this->nom;
 
             $contact['prenom'] = $this->prenom;
+
+            $contact['e_mail'] = $this->email;
 
             $contact->save();
         }
