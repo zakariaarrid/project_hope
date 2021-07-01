@@ -133,6 +133,30 @@ class AddContact extends Component
 
         $contact->save();
 
+        $this->__resetForm();
+
         $this->emit('refreshtable');
+    }
+
+    private function __resetForm()
+    {
+        $this->entreprise= '';
+
+        $this->nom= '';   
+
+        $this->prenom= '';
+
+        $this->e_mail= '';
+
+        $this->nomEntreprise= '';
+
+        $this->code_postal= '';
+
+        $this->ville= '';
+
+        $this->adresse= '';
+
+        $this->statut= '';
+
     }
 }
