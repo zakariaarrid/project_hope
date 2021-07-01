@@ -33,12 +33,14 @@
                     Prénom
                   </label>
                   <input wire:model.defer="prenom" class="appearance-none block w-full   border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Prénom" @if($typeSelection == 'show') disabled @endif>              
+                  @error('prenom') <span class="text-red-800">{{ $message }}</span> @enderror
                 </div>
                 <div class="w-full md:w-1/2 px-3">
                   <label class="block uppercase tracking-wide  text-xs font-bold " >
                     Nom
                   </label>
                   <input wire:model.defer="nom" class="appearance-none block w-full   border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Nom" @if($typeSelection == 'show') disabled @endif>
+                  @error('nom') <span class="text-red-800">{{ $message }}</span> @enderror
                 </div>
               </div>
               <div class="flex flex-wrap -mx-3 mb-1.5">           
@@ -47,6 +49,7 @@
                     Email
                   </label>
                   <input wire:model.defer="e_mail" class="appearance-none block w-full   border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="email" placeholder="Email" @if($typeSelection == 'show') disabled @endif>
+                  @error('e_mail') <span class="text-red-800">{{ $message }}</span> @enderror
                 </div>
               </div>
               <div class="flex flex-wrap -mx-3 mb-1.5">           
@@ -55,6 +58,7 @@
                     Entreprise
                   </label>
                   <input wire:model.defer='nomEntreprise' class="appearance-none block w-full   border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Entreprise" @if($typeSelection == 'show') disabled @endif>
+                  @error('nomEntreprise') <span class="text-red-800">{{ $message }}</span> @enderror
                 </div>
               </div>
               <div class="flex flex-wrap -mx-3 mb-1.5">           
@@ -63,6 +67,7 @@
                     Adresse
                   </label>
                   <textarea wire:model.wire="adresse" class="resize-y w-full border rounded-md" @if($typeSelection == 'show') disabled @endif></textarea>              
+                  @error('adresse') <span class="text-red-800">{{ $message }}</span> @enderror
                 </div>
               </div>
               <div class="flex flex-wrap -mx-3 mb-1.5">
@@ -71,6 +76,7 @@
                     Code Postal
                   </label>
                   <input wire:model.defer="code_postal" class="appearance-none block w-full   border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="Code Postal" @if($typeSelection == 'show') disabled @endif>              
+                  @error('code_postal') <span class="text-red-800">{{ $message }}</span> @enderror
                 </div>
                 <div class="w-full md:w-1/2 px-3">
                   <label class="block uppercase tracking-wide  text-xs font-bold " >

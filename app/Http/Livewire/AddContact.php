@@ -40,7 +40,7 @@ class AddContact extends Component
         'prenom' => 'required|string',
         'e_mail' => 'required|email',
         'adresse' => 'required',
-        'nomEntreprise' => 'required|alpha_num',
+        'nomEntreprise' => 'required|regex:/^[\w-]*$/',
         'code_postal' => 'required|integer',
     ];
 
@@ -125,9 +125,7 @@ class AddContact extends Component
 
         $contact['telephone_mobile'] = '+000000000';
 
-        $contact['telephone_fixe'] = '+000000000';
-
-        $contact['prenom'] = $this->prenom;
+        $contact['telephone_fixe'] = '+000000000';        
 
         $contact['entreprise_id'] = $entreprise->id;
 

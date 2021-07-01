@@ -38,7 +38,7 @@ class EditContact extends Component
         'nom' => 'required|string',
         'prenom' => 'required|string',
         'email' => 'required|email',
-        'nomEntreprise' => 'required|alpha_num',
+        'nomEntreprise' => 'required|regex:/^[\w-]*$/',
         'code_postal' => 'required|integer',
     ];
 
@@ -74,33 +74,30 @@ class EditContact extends Component
             
             $this->validate();            
 
-            $entreprise = Entreprise::findOrFail($this->id_enteprise);           
-
-            $entreprise['adresse'] =  $this->adresse;
-
-            $entreprise['nom'] =  $this->nomEntreprise;
-
-            $entreprise['code_postal'] =  $this->code_postal;
-
-            $entreprise['ville'] =  $this->ville;
-
-            $entreprise['adresse'] =  $this->adresse;
-
-            $entreprise['statut'] =  $this->statut;
-
-            $entreprise->save();
-
+            $entreprise = Entreprise::findOrFail($this->id_enteprise)
+            ->update(
+                [
+                    'adresse'=>$this->adresse,
+                    'nom'=>ucwords($this->nomEntreprise),
+                    'code_postal'=>$this->code_postal,
+                    'ville'=>ucwords($this->ville),
+                    'adresse'=>$this->adresse,
+                    'statut'=>$this->statut,
+                ]
+            );    
+            
             //update contact
 
-            $contact = Contact::where('entreprise_id','=', $this->id_enteprise)->first();
+            $contact = Contact::where('entreprise_id','=', $this->id_enteprise)->first()
+            ->update(
+                [
+                'nom'=>ucwords($this->nom),
+                'prenom'=>ucwords($this->prenom),
+                'e_mail'=>strtolower($this->email),
+                ]
+            );        
 
-            $contact['nom'] = $this->nom;
-
-            $contact['prenom'] = $this->prenom;
-
-            $contact['e_mail'] = $this->email;
-
-            $contact->save();
+            $this->emit('refreshtable');
         }
 
          $this->display = false;
