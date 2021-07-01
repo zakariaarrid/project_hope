@@ -1,8 +1,9 @@
 <div class="flex justify-center h-screen items-center bg-gray-200 bg-opacity-75 antialiased fixed z-10 inset-0 overflow-y-auto"
-    x-cloak   
+     
     x-data="{ isOpen: @entangle('display') } "    
     x-show="isOpen"
     @keydown.escape.window="isOpen:false"
+    x-cloak  
 >
     <div class="flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg border border-gray-300 shadow-xl ">
       <div

@@ -23,6 +23,12 @@ class DeleteContact extends Component
        
     }
 
+    public function closeModal()
+    {
+       $this->displayModal = false;
+
+    }
+
     public function supprimerContact() 
     {
         Contact::where('entreprise_id','=', $this->id_entreprise)->delete();

@@ -2,7 +2,7 @@
     x-cloak   
     x-data="{ isOpen: @entangle('display') } "    
     x-show="isOpen"
-    @keydown.escape.window="console.log('test')"
+    @keydown.escape.window=""
 >
     <div class="flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg border border-gray-300 shadow-xl ">
       <div
