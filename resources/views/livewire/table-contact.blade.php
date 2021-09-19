@@ -1,13 +1,13 @@
 <div class="overflow-x-auto"> 
 
     <div class="min-w-screen min-h-screen bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">       
-        <div class="w-full lg:w-5/6 flex-row">
-            <div class="flex md:flex-row flex-col m-3">
+        <div class="w-full lg:w-5/6 flex-row">            
+            <div class="grid md:grid-cols-2 gap-4">
                 <div>
                     <input wire:model="search" class="appearance-none block w-full   border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="Recherche ...">
                 </div>
-                <div class="md:ml-80 ml-0"> 
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                <div> 
+                    <button class="md:float-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         wire:click="AddContact"
                         type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
